@@ -6,11 +6,15 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.example.notetakingapp.R
+import com.example.notetakingapp.databinding.FragmentAddBinding
+import com.example.notetakingapp.databinding.FragmentUpdateBinding
 
 
 class AddFragment : Fragment() {
 
-
+    private var _binding: FragmentAddBinding? = null
+    private val binding
+        get() = _binding!!
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -21,7 +25,8 @@ class AddFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_add, container, false)
+        _binding = FragmentAddBinding.inflate(inflater, container, false)
+        return  binding.root
     }
 
 }
