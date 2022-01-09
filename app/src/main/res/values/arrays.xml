@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="fidility">
+        <item>Less Important</item>
+        <item>Important</item>
+        <item>Very Important</item>
+    </string-array>
+</resources>

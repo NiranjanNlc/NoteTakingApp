@@ -1,12 +1,9 @@
 package com.example.notetakingapp.view.fragment
 
 import android.os.Bundle
+import android.view.*
 import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
 import com.example.notetakingapp.R
-import com.example.notetakingapp.databinding.FragmentAddBinding
 import com.example.notetakingapp.databinding.FragmentUpdateBinding
 
 
@@ -26,7 +23,25 @@ class UpdateFragment : Fragment()
     ): View? {
         // Inflate the layout for this fragment
         _binding = FragmentUpdateBinding.inflate(inflater, container, false)
+        setHasOptionsMenu(true)
         return  binding.root
+    }
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        inflater.inflate(R.menu.add_menu, menu)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when (item.itemId) {
+            R.id.add_menu -> {
+                updateData()
+            }
+        }
+        return super.onOptionsItemSelected(item)
+    }
+
+    private fun updateData() {
+
+
     }
 
 }

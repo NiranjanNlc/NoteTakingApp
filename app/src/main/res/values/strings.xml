@@ -3,4 +3,7 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="no_todos_found">No notes found</string>
+    <string name="add">Save</string>
+    <string name="description">Notes Description</string>
+    <string name="title">Note Title</string>
 </resources>

@@ -1,10 +1,9 @@
 package com.example.notetakingapp.view.fragment
 
 import android.os.Bundle
+import android.view.*
 import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import androidx.navigation.findNavController
 import com.example.notetakingapp.R
 import com.example.notetakingapp.databinding.FragmentAddBinding
 import com.example.notetakingapp.databinding.FragmentListBinding
@@ -27,7 +26,15 @@ class ListFragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         _binding = FragmentListBinding.inflate(inflater, container, false)
+        setHasOptionsMenu(true)
+        setOnclickListener()
         return  binding.root
+    }
+
+    private fun setOnclickListener() {
+        binding.floatingActionButton.setOnClickListener{
+            it.findNavController().navigate(R.id.action_listFragment_to_addFragment)
+        }
     }
 
 
