@@ -7,6 +7,7 @@ import androidx.navigation.findNavController
 import com.example.notetakingapp.R
 import com.example.notetakingapp.databinding.FragmentListBinding
 import com.example.notetakingapp.utils.ViewModelUtil
+import com.example.notetakingapp.view.adapter.NotesAdapter
 import com.example.notetakingapp.viewmodel.ViewModal
 
 
@@ -32,7 +33,7 @@ class ListFragment : Fragment() {
         setOnclickListener()
         viewModal = context?.let { ViewModelUtil.getViewModel(it) }!!
         viewModal.notes.observe(viewLifecycleOwner,{
-          //  binding.listRecyclerView.adapter =
+            binding.listRecyclerView.adapter = NotesAdapter(it)
         })
         return  binding.root
     }

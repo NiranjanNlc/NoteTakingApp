@@ -4,16 +4,17 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
+import com.example.notetakingapp.databinding.NotesItemBinding
 import com.example.notetakingapp.model.data.Notes
 
 
-class NotesAdapter(var todoList: List<Notes>) :
+class NotesAdapter(var notesList: List<Notes>) :
     RecyclerView.Adapter<NotesAdapter.NotesViewHolder>() {
 
     class NotesViewHolder(private val binding: NotesItemBinding) :
         RecyclerView.ViewHolder(binding.root) {
-        fun bind(todo: Notes) {
-            binding.todoData = todo
+        fun bind(notes: Notes) {
+            binding.notes = notes
             binding.executePendingBindings()
         }
 
@@ -30,16 +31,16 @@ class NotesAdapter(var todoList: List<Notes>) :
         return NotesViewHolder.from(parent)
     }
 
-    override fun getItemCount(): Int = todoList.size
+    override fun getItemCount(): Int = notesList.size
 
     override fun onBindViewHolder(holder: NotesViewHolder, position: Int) {
-        val todo = todoList[position]
-        holder.bind(todo)
+        val notes = notesList[position]
+        holder.bind(notes)
     }
 
     fun setList(list: List<Notes>) {
-        val diffUtil = NotesDiffUtil(todoList, list)
+        val diffUtil = NotesDiffUtil(notesList, list)
         val differResult = DiffUtil.calculateDiff(diffUtil)
-        this.todoList = list
+        this.notesList = list
         differResult.dispatchUpdatesTo(this)
     }
