@@ -12,4 +12,16 @@ data class Notes(
     var fidility: Fidility,
     var description: String,
     var dateCreated: String
-)
+) {
+    constructor(
+        title: String,
+        fidility: Fidility,
+        description: String,
+        dateCreated: String
+    ) : this(1,
+        title,
+        fidility,
+        description,
+        dateCreated
+    )
+}
