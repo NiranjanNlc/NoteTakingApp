@@ -10,7 +10,7 @@ class ViewModalFactory(private val repository: NotesRepo) : ViewModelProvider.Fa
         if (modelClass.isAssignableFrom(ViewModal::class.java)) {
             println("Assighnabke class")
             @Suppress("UNCHECKED_CAST")
-            return ViewModal() as T
+            return ViewModal(repository) as T
         }
         throw IllegalArgumentException("Unknown ViewModel class")
     }

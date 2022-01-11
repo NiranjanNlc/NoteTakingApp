@@ -5,9 +5,9 @@ import android.view.*
 import androidx.fragment.app.Fragment
 import androidx.navigation.findNavController
 import com.example.notetakingapp.R
-import com.example.notetakingapp.databinding.FragmentAddBinding
 import com.example.notetakingapp.databinding.FragmentListBinding
-import com.example.notetakingapp.databinding.FragmentUpdateBinding
+import com.example.notetakingapp.utils.ViewModelUtil
+import com.example.notetakingapp.viewmodel.ViewModal
 
 
 class ListFragment : Fragment() {
@@ -15,6 +15,8 @@ class ListFragment : Fragment() {
     private var _binding: FragmentListBinding? = null
     private val binding
         get() = _binding!!
+
+    private lateinit var viewModal: ViewModal
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -28,6 +30,10 @@ class ListFragment : Fragment() {
         _binding = FragmentListBinding.inflate(inflater, container, false)
         setHasOptionsMenu(true)
         setOnclickListener()
+        viewModal = context?.let { ViewModelUtil.getViewModel(it) }!!
+        viewModal.notes.observe(viewLifecycleOwner,{
+          //  binding.listRecyclerView.adapter =
+        })
         return  binding.root
     }
 
