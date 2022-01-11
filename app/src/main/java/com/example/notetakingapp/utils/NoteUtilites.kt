@@ -8,10 +8,21 @@ object NoteUtilites
 
     fun initiateDtaBase()
     {
-          val notes = Notes ( title = "some thing",
-              fidility = Fidility.IMPORTANT,
-          description = "some thing",
-         dateCreated="some thing"
-                  )
+        var descriptionList = listOf<String>(" Niranjan lamichhane ",
+        " ashmita thapa       ",
+        " sashmita neupane    ",
+        " rachana poudel ",
+        " jharana bajracharya  ",
+        " Ashma Baniya ",
+        " ")
+        descriptionList.forEach {
+            insertData(it)
+        }
+    }
+
+    private fun insertData(sesc: String)
+    {
+
+
     }
 }
