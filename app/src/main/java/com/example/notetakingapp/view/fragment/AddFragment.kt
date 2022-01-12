@@ -57,8 +57,9 @@ class AddFragment : Fragment() {
     }
 
     private fun insertData() {
-        viewModal.addData(binding.notes)
+        viewModal.insertData(binding.notes)
     }
+
 
 
 }

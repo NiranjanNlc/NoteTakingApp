@@ -37,6 +37,7 @@
             android:layout_height="match_parent"
             android:ems="10"
             android:hint="@string/title"
+            android:text="@{notes.title}"
             android:inputType="textPersonName" />
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -75,6 +76,7 @@
             android:ems="10"
             android:gravity="top|start"
             android:hint="@string/description"
+            android:text="@{notes.description}"
             android:inputType="textMultiLine" />
 
     </com.google.android.material.textfield.TextInputLayout>

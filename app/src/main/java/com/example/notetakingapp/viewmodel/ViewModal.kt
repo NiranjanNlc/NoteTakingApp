@@ -31,5 +31,14 @@ class ViewModal(private val repo: NotesRepo): ViewModel(),CoroutineScope
         }
     }
 
+    fun insertData(notes: Notes?) {
+        this.launch{
+            if (notes != null) {
+                repo.insertData(notes)
+                updateStatus.value = true
+            }
+        }
+    }
+
 
 }
