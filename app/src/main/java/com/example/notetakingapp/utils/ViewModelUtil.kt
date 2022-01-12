@@ -11,7 +11,7 @@ import kotlinx.coroutines.SupervisorJob
 object ViewModelUtil {
     fun getViewModel(context: Context): ViewModal {
         val applicationScope = CoroutineScope(SupervisorJob())
-        val database =  NotesDb.getDatabase(context, applicationScope)
+        val database =  NotesDb.getDatabase(context,applicationScope)
         val repo = NotesRepo(database.notesdDao())
         return ViewModalFactory(repo).create(ViewModal::class.java)
     }

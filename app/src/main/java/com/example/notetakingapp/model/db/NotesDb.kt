@@ -1,6 +1,7 @@
 package com.example.notetakingapp.model.db
 
 import android.content.Context
+import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 import androidx.sqlite.db.SupportSQLiteDatabase
@@ -9,7 +10,7 @@ import com.example.notetakingapp.model.data.Fidility
 import com.example.notetakingapp.model.data.Notes
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
-
+@Database(entities = [Notes::class], version = 1)
 abstract class NotesDb : RoomDatabase() {
     abstract fun notesdDao(): NotesDao
     private class NotesDatabaseCallback(
@@ -63,8 +64,9 @@ abstract class NotesDb : RoomDatabase() {
                 val instance = Room.databaseBuilder(
                     context.applicationContext,
                    NotesDb::class.java,
-                    "girl_database"
+                    "note_db"
                 ).addCallback(NotesDatabaseCallback(scope))
+                    .allowMainThreadQueries()
                     .build()
                 INSTANCE = instance
                 // return instance

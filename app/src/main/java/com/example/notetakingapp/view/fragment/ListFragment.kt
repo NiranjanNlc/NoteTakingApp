@@ -9,6 +9,8 @@ import com.example.notetakingapp.databinding.FragmentListBinding
 import com.example.notetakingapp.utils.ViewModelUtil
 import com.example.notetakingapp.view.adapter.NotesAdapter
 import com.example.notetakingapp.viewmodel.ViewModal
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.SupervisorJob
 
 
 class ListFragment : Fragment() {
