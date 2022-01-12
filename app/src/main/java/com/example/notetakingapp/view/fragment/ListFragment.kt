@@ -2,6 +2,7 @@ package com.example.notetakingapp.view.fragment
 
 import android.os.Bundle
 import android.view.*
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.navigation.findNavController
 import com.example.notetakingapp.R
@@ -11,7 +12,8 @@ import com.example.notetakingapp.view.adapter.NotesAdapter
 import com.example.notetakingapp.viewmodel.ViewModal
 
 
-class ListFragment : Fragment() {
+class ListFragment : Fragment(),NotesAdapter.onNotesClickListener
+{
 
     private var _binding: FragmentListBinding? = null
     private val binding
@@ -33,7 +35,7 @@ class ListFragment : Fragment() {
         setHasOptionsMenu(true)
         setOnclickListener()
         viewModal = context?.let { ViewModelUtil.getViewModel(it) }!!
-        notesAdapter= NotesAdapter(viewModal.notes.value)
+        notesAdapter= NotesAdapter(viewModal.notes.value,clickListener = this)
        viewModal.notes.observe(viewLifecycleOwner,{
             println(" our list " + it.toString())
             binding.listRecyclerView.adapter = notesAdapter
@@ -50,6 +52,11 @@ class ListFragment : Fragment() {
         binding.floatingActionButton.setOnClickListener{
             it.findNavController().navigate(R.id.action_listFragment_to_addFragment)
         }
+    }
+
+    override fun onClick()
+    {
+      Toast.makeText(activity, " clickrd", Toast.LENGTH_LONG).show()
     }
 
 
