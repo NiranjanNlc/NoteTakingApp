@@ -25,6 +25,7 @@ class UpdateFragment : Fragment()
         // Inflate the layout for this fragment
         _binding = FragmentUpdateBinding.inflate(inflater, container, false)
          val notes = arguments?.get("notes") as Notes
+        println( " notes reieved  $notes" )
         _binding!!.notes = notes
         setHasOptionsMenu(true)
         return  binding.root
