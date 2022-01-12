@@ -44,3 +44,4 @@ class NotesAdapter(var notesList: List<Notes>) :
         this.notesList = list
         differResult.dispatchUpdatesTo(this)
     }
+}
