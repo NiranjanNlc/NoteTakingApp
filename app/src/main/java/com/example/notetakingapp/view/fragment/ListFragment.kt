@@ -35,7 +35,12 @@ class ListFragment : Fragment() {
         setOnclickListener()
         viewModal = context?.let { ViewModelUtil.getViewModel(it) }!!
         viewModal.notes.observe(viewLifecycleOwner,{
+            println(" our list " + it.toString())
             binding.listRecyclerView.adapter = NotesAdapter(it)
+//            binding.listRecyclerView.adapter = NotesAdapter(it)
+//            binding.listRecyclerView.adapter = NotesAdapter(it)
+//            binding.listRecyclerView.adapter = NotesAdapter(it)
+
         })
         return  binding.root
     }
