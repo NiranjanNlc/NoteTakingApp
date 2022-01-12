@@ -6,6 +6,8 @@ import androidx.fragment.app.Fragment
 import com.example.notetakingapp.R
 import com.example.notetakingapp.databinding.FragmentUpdateBinding
 import com.example.notetakingapp.model.data.Notes
+import com.example.notetakingapp.utils.ViewModelUtil
+import com.example.notetakingapp.viewmodel.ViewModal
 
 
 class UpdateFragment : Fragment()
@@ -13,6 +15,7 @@ class UpdateFragment : Fragment()
     private var _binding: FragmentUpdateBinding? = null
     private val binding
         get() = _binding!!
+    private lateinit var viewModal: ViewModal;
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -28,6 +31,7 @@ class UpdateFragment : Fragment()
         println( " notes reieved  $notes" )
         _binding!!.notes = notes
         setHasOptionsMenu(true)
+        viewModal = context?.let { ViewModelUtil.getViewModel(it) }!!
         return  binding.root
     }
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
@@ -43,9 +47,9 @@ class UpdateFragment : Fragment()
         return super.onOptionsItemSelected(item)
     }
 
-    private fun updateData() {
-
-
+    private fun updateData()
+    {
+      viewModal.addData(binding.notes)
     }
 
 }
