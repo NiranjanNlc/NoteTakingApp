@@ -3,6 +3,7 @@ package com.example.notetakingapp.model.data
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 import com.example.notetakingapp.model.data.Fidility
+import java.io.Serializable
 
 @Entity(tableName = "notes_table")
 data class Notes(
@@ -12,7 +13,7 @@ data class Notes(
     var fidility: Fidility,
     var description: String,
     var dateCreated: String
-) {
+) : Serializable {
     constructor(
         title: String,
         fidility: Fidility,

@@ -13,14 +13,15 @@ class NotesAdapter(var notesList: List<Notes>?,var clickListener: onNotesClickLi
 
    public interface onNotesClickListener
     {
-       public fun onClick()
+       public fun onClick(notes: Notes)
     }
      class NotesViewHolder(private val binding: NotesItemBinding,private val clickListener: onNotesClickListener ) :
         RecyclerView.ViewHolder(binding.root)
     {
         init {
              binding.root.setOnClickListener {
-                 clickListener.onClick()
+
+                 clickListener.onClick(binding.notes!!)
              }
         }
         fun bind(notes: Notes) {

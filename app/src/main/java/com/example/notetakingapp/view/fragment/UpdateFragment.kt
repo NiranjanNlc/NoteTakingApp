@@ -5,6 +5,7 @@ import android.view.*
 import androidx.fragment.app.Fragment
 import com.example.notetakingapp.R
 import com.example.notetakingapp.databinding.FragmentUpdateBinding
+import com.example.notetakingapp.model.data.Notes
 
 
 class UpdateFragment : Fragment()
@@ -23,6 +24,8 @@ class UpdateFragment : Fragment()
     ): View? {
         // Inflate the layout for this fragment
         _binding = FragmentUpdateBinding.inflate(inflater, container, false)
+         val notes = arguments?.get("notes") as Notes
+        _binding!!.notes = notes
         setHasOptionsMenu(true)
         return  binding.root
     }
