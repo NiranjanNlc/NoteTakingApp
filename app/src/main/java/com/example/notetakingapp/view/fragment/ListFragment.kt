@@ -5,6 +5,8 @@ import android.view.*
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.navigation.findNavController
+import androidx.navigation.fragment.NavHostFragment.findNavController
+import androidx.navigation.fragment.findNavController
 import com.example.notetakingapp.R
 import com.example.notetakingapp.databinding.FragmentListBinding
 import com.example.notetakingapp.utils.ViewModelUtil
@@ -57,6 +59,7 @@ class ListFragment : Fragment(),NotesAdapter.onNotesClickListener
     override fun onClick()
     {
       Toast.makeText(activity, " clickrd", Toast.LENGTH_LONG).show()
+        findNavController().navigate(R.id.action_listFragment_to_updateFragment)
     }
 
 
