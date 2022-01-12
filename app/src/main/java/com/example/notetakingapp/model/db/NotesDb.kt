@@ -51,14 +51,11 @@ abstract class NotesDb : RoomDatabase() {
         }
     }
     companion object {
-        // Singleton prevents multiple instances of database opening at the
-        // same time.
+
         @Volatile
         private var INSTANCE:NotesDb? = null
 
         fun getDatabase(context: Context, scope: CoroutineScope):NotesDb {
-            // if the INSTANCE is not null, then return it,
-            // if it is, then create the database]
             println("You have acces over here ")
             return INSTANCE ?: synchronized(this) {
                 val instance = Room.databaseBuilder(
@@ -66,7 +63,6 @@ abstract class NotesDb : RoomDatabase() {
                    NotesDb::class.java,
                     "note_db"
                 ).addCallback(NotesDatabaseCallback(scope))
-                    .allowMainThreadQueries()
                     .build()
                 INSTANCE = instance
                 // return instance
