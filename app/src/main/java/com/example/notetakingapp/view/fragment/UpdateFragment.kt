@@ -3,6 +3,7 @@ package com.example.notetakingapp.view.fragment
 import android.os.Bundle
 import android.view.*
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import com.example.notetakingapp.R
 import com.example.notetakingapp.databinding.FragmentUpdateBinding
 import com.example.notetakingapp.model.data.Notes
@@ -32,8 +33,20 @@ class UpdateFragment : Fragment()
         _binding!!.notes = notes
         setHasOptionsMenu(true)
         viewModal = context?.let { ViewModelUtil.getViewModel(it) }!!
+        observeValue()
         return  binding.root
     }
+
+    private fun observeValue()
+    {
+     viewModal.updateStatus.observe(viewLifecycleOwner,{
+         if (it) {
+             println(" updat section  ${it.toString()}")
+             findNavController().navigate(R.id.action_updateFragment_to_listFragment)
+         }
+     })
+    }
+
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         inflater.inflate(R.menu.add_menu, menu)
     }

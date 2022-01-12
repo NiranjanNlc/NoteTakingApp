@@ -14,7 +14,9 @@ class NotesRepo(private val notesDao: NotesDao) {
         notesDao.insertData(notes)
     }
 
-    suspend fun updateData(notes: Notes) {
+    suspend fun updateData(notes: Notes)
+    {
+        println(" In update sections  ${notes.toString()}")
         notesDao.updateData(notes)
     }
 
