@@ -21,6 +21,7 @@ abstract class NotesDb : RoomDatabase() {
             super.onCreate(db)
             INSTANCE?.let { database ->
                 scope.launch {
+                    println(" coroutine scope initiation ...")
                     var notesDao = database.notesdDao()
                         initiseDb(notesDao)
                 }
@@ -36,12 +37,14 @@ abstract class NotesDb : RoomDatabase() {
                 " Ashma Baniya ",
                 " ")
             descriptionList.forEach {
+                println(it)
                 insertData(it,notesDao)
             }
         }
 
         private suspend fun insertData(sesc: String, notesDao: NotesDao)
         {
+            println(" $sesc inserting operation ...........")
             val notes = Notes ( title = "some thing",
                 fidility = Fidility.IMPORTANT,
                 sesc,

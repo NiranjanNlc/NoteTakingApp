@@ -9,8 +9,6 @@ import com.example.notetakingapp.databinding.FragmentListBinding
 import com.example.notetakingapp.utils.ViewModelUtil
 import com.example.notetakingapp.view.adapter.NotesAdapter
 import com.example.notetakingapp.viewmodel.ViewModal
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.SupervisorJob
 
 
 class ListFragment : Fragment() {
@@ -18,6 +16,7 @@ class ListFragment : Fragment() {
     private var _binding: FragmentListBinding? = null
     private val binding
         get() = _binding!!
+    private lateinit var notesAdapter: NotesAdapter
 
     private lateinit var viewModal: ViewModal
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -34,13 +33,15 @@ class ListFragment : Fragment() {
         setHasOptionsMenu(true)
         setOnclickListener()
         viewModal = context?.let { ViewModelUtil.getViewModel(it) }!!
+        notesAdapter= NotesAdapter(viewModal.notes.value)
+       viewModal.notes.observe(viewLifecycleOwner,{
+            println(" our list " + it.toString())
+            binding.listRecyclerView.adapter = notesAdapter
+            notesAdapter.setList(it)
+        })
         viewModal.notes.observe(viewLifecycleOwner,{
             println(" our list " + it.toString())
-            binding.listRecyclerView.adapter = NotesAdapter(it)
-//            binding.listRecyclerView.adapter = NotesAdapter(it)
-//            binding.listRecyclerView.adapter = NotesAdapter(it)
-//            binding.listRecyclerView.adapter = NotesAdapter(it)
-
+          //  binding.listRecyclerView.adapter
         })
         return  binding.root
     }

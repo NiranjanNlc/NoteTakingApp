@@ -8,7 +8,7 @@ import com.example.notetakingapp.databinding.NotesItemBinding
 import com.example.notetakingapp.model.data.Notes
 
 
-class NotesAdapter(var notesList: List<Notes>) :
+class NotesAdapter(var notesList: List<Notes>?) :
     RecyclerView.Adapter<NotesAdapter.NotesViewHolder>() {
 
     class NotesViewHolder(private val binding: NotesItemBinding) :
@@ -31,17 +31,19 @@ class NotesAdapter(var notesList: List<Notes>) :
         return NotesViewHolder.from(parent)
     }
 
-    override fun getItemCount(): Int = notesList.size
+    override fun getItemCount(): Int = notesList!!.size
 
     override fun onBindViewHolder(holder: NotesViewHolder, position: Int) {
-        val notes = notesList[position]
+        val notes = notesList!![position]
         holder.bind(notes)
     }
 
     fun setList(list: List<Notes>) {
-        val diffUtil = NotesDiffUtil(notesList, list)
-        val differResult = DiffUtil.calculateDiff(diffUtil)
+        val diffUtil = notesList?.let { NotesDiffUtil(it, list) }
+        val differResult = diffUtil?.let { DiffUtil.calculateDiff(it) }
         this.notesList = list
-        differResult.dispatchUpdatesTo(this)
+        if (differResult != null) {
+            differResult.dispatchUpdatesTo(this)
+        }
     }
 }

@@ -14,4 +14,7 @@ class ViewModal(private val repo: NotesRepo): ViewModel(),CoroutineScope
     override val coroutineContext: CoroutineContext
         get() = Dispatchers.IO + SupervisorJob()
 
+    init {
+        println(" oourr notes ${notes.value}")
+    }
 }
