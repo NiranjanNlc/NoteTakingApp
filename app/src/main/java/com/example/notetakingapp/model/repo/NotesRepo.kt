@@ -1,8 +1,10 @@
 package com.example.notetakingapp.model.repo
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import com.example.notetakingapp.model.dao.NotesDao
 import com.example.notetakingapp.model.data.Notes
+import java.lang.Exception
 
 class NotesRepo(private val notesDao: NotesDao) {
 
@@ -11,13 +13,26 @@ class NotesRepo(private val notesDao: NotesDao) {
     val sortByLowPriority = notesDao.sortByLowPriority()
 
     suspend fun insertData(notes: Notes) {
-        notesDao.insertData(notes)
+        try {
+            notesDao.insertData(notes)
+        }
+        catch (e:Exception)
+        {
+            Log.i("Error ", e.message.toString())
+        }
     }
 
     suspend fun updateData(notes: Notes)
     {
         println(" In update sections  ${notes.toString()}")
-        notesDao.updateData(notes)
+        try {
+            notesDao.updateData(notes)
+        }
+        catch (e:Exception)
+        {
+            Log.i("Error ", e.message.toString())
+        }
+
     }
 
     suspend fun deleteData(notes: Notes) {
