@@ -10,7 +10,7 @@ import com.example.notetakingapp.model.data.Fidility
 import com.example.notetakingapp.model.data.Notes
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
-@Database(entities = [Notes::class], version = 1)
+@Database(entities = [Notes::class], version = 2)
 abstract class NotesDb : RoomDatabase() {
     abstract fun notesdDao(): NotesDao
     private class NotesDatabaseCallback(
@@ -47,7 +47,7 @@ abstract class NotesDb : RoomDatabase() {
             println(" $sesc inserting operation ...........")
             val notes = Notes ( title = "some thing",
                 fidility = Fidility.IMPORTANT,
-                sesc,
+                description = sesc,
                 dateCreated="some thing"
             )
             notesDao.insertData(notes)
@@ -72,7 +72,5 @@ abstract class NotesDb : RoomDatabase() {
                 instance
             }
         }
-
-
     }
 }

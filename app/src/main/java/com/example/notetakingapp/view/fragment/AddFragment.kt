@@ -13,9 +13,7 @@ import com.example.notetakingapp.viewmodel.ViewModal
 
 class AddFragment : Fragment() {
 
-    private var _binding: FragmentAddBinding? = null
-    private val binding
-        get() = _binding!!
+    private lateinit var binding: FragmentAddBinding
     lateinit var builder: AlertDialog.Builder
     lateinit var dialog: AlertDialog
 
@@ -29,12 +27,13 @@ class AddFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        _binding = FragmentAddBinding.inflate(inflater, container, false)
-        builder = AlertDialog.Builder(requireContext())
-        setHasOptionsMenu(true)
-        viewModal = context?.let { AppUtil.getViewModel(it) }!!
-        observeValue()
-        return  binding.root
+        binding = FragmentAddBinding.inflate(inflater, container, false)
+        return  binding.apply {
+            builder = AlertDialog.Builder(requireContext())
+            setHasOptionsMenu(true)
+            viewModal = context?.let { AppUtil.getViewModel(it) }!!
+            observeValue()
+        }!!.root
     }
 
     private fun observeValue() {
@@ -71,7 +70,4 @@ class AddFragment : Fragment() {
         showLoadngDalog()
         viewModal.insertData(binding.notes)
     }
-
-
-
 }
