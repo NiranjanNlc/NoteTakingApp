@@ -1,5 +1,6 @@
 package com.example.notetakingapp.viewmodel
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -36,14 +37,14 @@ class ViewModal(private val repo: NotesRepo): ViewModel(),CoroutineScope
 
     fun insertData(notes: Notes?) {
         updateStatus.value = false
-       val job =  this.launch{
-            if (notes != null) {
-                repo.insertData(notes)
-            }
-        }
-        if(job.isCompleted)
+        Log.i(" sttatus","$notes" )
+        if( this.launch{ if (notes != null) {repo.insertData(notes)} }.isCompleted)
         {
             updateStatus.value = true
+        }
+        else
+        {
+            Log.i(" sttatus","not completed" )
         }
     }
 

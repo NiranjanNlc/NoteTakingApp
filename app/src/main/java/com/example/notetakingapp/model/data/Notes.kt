@@ -9,20 +9,20 @@ import java.io.Serializable
 data class Notes(
     @PrimaryKey(autoGenerate = true)
     var id: Int,
-    var title: String,
-    var fidility: Fidility,
-    var description: String,
-    var dateCreated: String
+    var title: String?=null,
+    var fidility: Fidility?=null,
+    var description: String?=null,
+    var dateCreated: String?=null
 ) : Serializable {
-    constructor(
-        title: String,
-        fidility: Fidility,
-        description: String,
-        dateCreated: String
-    ) : this(1,
-        title,
-        fidility,
-        description,
-        dateCreated
-    )
+//    constructor(
+//        title: String?=null,
+//        fidility: Fidility,
+//        description: String?=null,
+//        dateCreated: String?=null
+//    ) : this(1,
+//        title,
+//        fidility,
+//        description,
+//        dateCreated
+//    )
 }
