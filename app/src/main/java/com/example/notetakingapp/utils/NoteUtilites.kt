@@ -4,7 +4,9 @@ import com.example.notetakingapp.model.data.Fidility
 import com.example.notetakingapp.model.data.Notes
 
 object NoteUtilites
-{}
+{
+
+}
 //
 //    fun initiateDtaBase()
 //    {

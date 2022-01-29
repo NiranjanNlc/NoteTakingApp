@@ -7,7 +7,7 @@ import androidx.navigation.fragment.findNavController
 import com.example.notetakingapp.R
 import com.example.notetakingapp.databinding.FragmentUpdateBinding
 import com.example.notetakingapp.model.data.Notes
-import com.example.notetakingapp.utils.ViewModelUtil
+import com.example.notetakingapp.utils.AppUtil
 import com.example.notetakingapp.viewmodel.ViewModal
 
 
@@ -32,7 +32,7 @@ class UpdateFragment : Fragment()
         println( " notes reieved  $notes" )
         _binding!!.notes = notes
         setHasOptionsMenu(true)
-        viewModal = context?.let { ViewModelUtil.getViewModel(it) }!!
+        viewModal = context?.let { AppUtil.getViewModel(it) }!!
         observeValue()
         return  binding.root
     }
