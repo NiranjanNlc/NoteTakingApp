@@ -3,14 +3,13 @@ package com.example.notetakingapp.view.fragment
 import android.os.Bundle
 import android.view.*
 import android.widget.Toast
-import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
 import com.example.notetakingapp.R
 import com.example.notetakingapp.databinding.FragmentListBinding
 import com.example.notetakingapp.model.data.Notes
-import com.example.notetakingapp.utils.ViewModelUtil
+import com.example.notetakingapp.utils.AppUtil
 import com.example.notetakingapp.view.adapter.NotesAdapter
 import com.example.notetakingapp.viewmodel.ViewModal
 
@@ -37,7 +36,7 @@ class ListFragment : Fragment(),NotesAdapter.onNotesClickListener
         _binding = FragmentListBinding.inflate(inflater, container, false)
         setHasOptionsMenu(true)
         setOnclickListener()
-        viewModal = context?.let { ViewModelUtil.getViewModel(it) }!!
+        viewModal = context?.let { AppUtil.getViewModel(it) }!!
         notesAdapter= NotesAdapter(viewModal.notes.value,clickListener = this)
        viewModal.notes.observe(viewLifecycleOwner,{
             println(" our list " + it.toString())

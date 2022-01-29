@@ -19,24 +19,31 @@ class ViewModal(private val repo: NotesRepo): ViewModel(),CoroutineScope
 
     init {
         println(" oourr notes ${notes.value}")
-        updateStatus.value = false
     }
 
     fun addData(notes: Notes?) {
-        this.launch{
+        updateStatus.value = false
+       val job = this.launch{
             if (notes != null) {
                 repo.updateData(notes)
-                updateStatus.value = true
             }
+        }
+        if(job.isCompleted)
+        {
+            updateStatus.value = true
         }
     }
 
     fun insertData(notes: Notes?) {
-        this.launch{
+        updateStatus.value = false
+       val job =  this.launch{
             if (notes != null) {
                 repo.insertData(notes)
-                updateStatus.value = true
             }
+        }
+        if(job.isCompleted)
+        {
+            updateStatus.value = true
         }
     }
 
