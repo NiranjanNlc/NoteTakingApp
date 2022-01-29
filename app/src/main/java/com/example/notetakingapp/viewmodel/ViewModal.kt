@@ -29,10 +29,7 @@ class ViewModal(private val repo: NotesRepo): ViewModel(),CoroutineScope
                 repo.updateData(notes)
             }
         }
-        if(job.isCompleted)
-        {
-            updateStatus.value = true
-        }
+        updateStatus.value = true
     }
 
     fun insertData(notes: Notes?) {
