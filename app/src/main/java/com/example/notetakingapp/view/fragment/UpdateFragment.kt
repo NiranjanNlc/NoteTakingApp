@@ -14,9 +14,7 @@ import com.example.notetakingapp.viewmodel.ViewModal
 
 class UpdateFragment : Fragment()
 {
-    private var _binding: FragmentUpdateBinding? = null
-    private val binding
-        get() = _binding!!
+    private lateinit var _binding: FragmentUpdateBinding
     private lateinit var viewModal: ViewModal;
     lateinit var builder: AlertDialog.Builder
     lateinit var dialog: AlertDialog
@@ -31,14 +29,15 @@ class UpdateFragment : Fragment()
     ): View? {
         // Inflate the layout for this fragment
         _binding = FragmentUpdateBinding.inflate(inflater, container, false)
-        builder = AlertDialog.Builder(requireContext())
-        val notes = arguments?.get("notes") as Notes
-        println( " notes reieved  $notes" )
-        _binding!!.notes = notes
-        setHasOptionsMenu(true)
-        viewModal = context?.let { AppUtil.getViewModel(it) }!!
-        observeValue()
-        return  binding.root
+        return  _binding.apply {
+            builder = AlertDialog.Builder(requireContext())
+            val notes = arguments?.get("notes") as Notes
+            println( " notes reieved  $notes" )
+            _binding!!.notes = notes
+            setHasOptionsMenu(true)
+            viewModal = context?.let { AppUtil.getViewModel(it) }!!
+            observeValue()
+        }.root
     }
 
     private fun observeValue()
@@ -67,8 +66,11 @@ class UpdateFragment : Fragment()
 
     private fun updateData()
     {
-        showLoadngDalog()
-      viewModal.addData(binding.notes)
+        if(_binding.notes !=null)
+        {
+            showLoadngDalog()
+            viewModal.addData(_binding.notes)
+        }
     }
 
     private fun showLoadngDalog() {

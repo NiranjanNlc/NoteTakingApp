@@ -7,6 +7,7 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.example.notetakingapp.R
 import com.example.notetakingapp.databinding.FragmentAddBinding
+import com.example.notetakingapp.model.data.Notes
 import com.example.notetakingapp.utils.AppUtil
 import com.example.notetakingapp.viewmodel.ViewModal
 
@@ -21,6 +22,7 @@ class AddFragment : Fragment() {
         super.onCreate(savedInstanceState)
     }
     private lateinit var viewModal : ViewModal
+    private lateinit var notes: Notes
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -29,8 +31,10 @@ class AddFragment : Fragment() {
         // Inflate the layout for this fragment
         binding = FragmentAddBinding.inflate(inflater, container, false)
         return  binding.apply {
+            lifecycleOwner = viewLifecycleOwner
             builder = AlertDialog.Builder(requireContext())
             setHasOptionsMenu(true)
+            notes = Notes()
             viewModal = context?.let { AppUtil.getViewModel(it) }!!
             observeValue()
         }!!.root
@@ -67,7 +71,10 @@ class AddFragment : Fragment() {
     }
 
     private fun insertData() {
-        showLoadngDalog()
-        viewModal.insertData(binding.notes)
+        if (binding.notes!=null) {
+            println(" this one ${binding.notes}")
+            showLoadngDalog()
+            viewModal.insertData(binding.notes)
+        }
     }
 }

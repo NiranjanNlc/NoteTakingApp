@@ -38,15 +38,7 @@ class ViewModal(private val repo: NotesRepo): ViewModel(),CoroutineScope
     fun insertData(notes: Notes?) {
         updateStatus.value = false
         Log.i(" sttatus","$notes" )
-        if( this.launch{ if (notes != null) {repo.insertData(notes)} }.isCompleted)
-        {
-            updateStatus.value = true
-        }
-        else
-        {
-            Log.i(" sttatus","not completed" )
-        }
+        val job = this.launch{ if (notes != null) {repo.insertData(notes)} }
+        updateStatus.value = true
     }
-
-
 }
