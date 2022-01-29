@@ -46,6 +46,7 @@ class UpdateFragment : Fragment()
      viewModal.updateStatus.observe(viewLifecycleOwner,{
          if (it) {
              println(" updat section  ${it.toString()}")
+             dialog.dismiss()
              findNavController().navigate(R.id.action_updateFragment_to_listFragment)
          }
      })
