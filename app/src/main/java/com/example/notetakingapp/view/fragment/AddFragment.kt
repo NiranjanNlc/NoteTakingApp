@@ -41,6 +41,7 @@ class AddFragment : Fragment() {
         viewModal.updateStatus.observe(viewLifecycleOwner,{
             if (it) {
                 println(" upaddt section  ${it.toString()}")
+                dialog.dismiss()
                 findNavController().navigate(R.id.action_addFragment_to_listFragment)
             }
         })
