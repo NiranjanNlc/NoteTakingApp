@@ -29,6 +29,7 @@ class UpdateFragment : Fragment()
     ): View? {
         // Inflate the layout for this fragment
         _binding = FragmentUpdateBinding.inflate(inflater, container, false)
+
         return  _binding.apply {
             builder = AlertDialog.Builder(requireContext())
             val notes = arguments?.get("notes") as Notes
@@ -66,13 +67,14 @@ class UpdateFragment : Fragment()
 
     private fun updateData()
     {
+ 
         if(_binding.notes !=null)
         {
             showLoadngDalog()
             viewModal.addData(_binding.notes)
         }
     }
-
+ 
     private fun showLoadngDalog() {
         builder.setView(layoutInflater.inflate(R.layout.activity_loading_layout,null))
         builder.setCancelable(false)

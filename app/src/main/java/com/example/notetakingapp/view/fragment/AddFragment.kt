@@ -76,5 +76,6 @@ class AddFragment : Fragment() {
             showLoadngDalog()
             viewModal.insertData(binding.notes)
         }
+ 
     }
 }
