@@ -2,6 +2,7 @@ package com.example.notetakingapp.view.fragment
 
 import android.os.Bundle
 import android.view.*
+import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.example.notetakingapp.R
@@ -17,6 +18,8 @@ class UpdateFragment : Fragment()
     private val binding
         get() = _binding!!
     private lateinit var viewModal: ViewModal;
+    lateinit var builder: AlertDialog.Builder
+    lateinit var dialog: AlertDialog
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -28,7 +31,8 @@ class UpdateFragment : Fragment()
     ): View? {
         // Inflate the layout for this fragment
         _binding = FragmentUpdateBinding.inflate(inflater, container, false)
-         val notes = arguments?.get("notes") as Notes
+        builder = AlertDialog.Builder(requireContext())
+        val notes = arguments?.get("notes") as Notes
         println( " notes reieved  $notes" )
         _binding!!.notes = notes
         setHasOptionsMenu(true)
@@ -62,7 +66,15 @@ class UpdateFragment : Fragment()
 
     private fun updateData()
     {
+        showLoadngDalog()
       viewModal.addData(binding.notes)
+    }
+
+    private fun showLoadngDalog() {
+        builder.setView(layoutInflater.inflate(R.layout.activity_loading_layout,null))
+        builder.setCancelable(false)
+        dialog = builder.create()
+        dialog.show()
     }
 
 }
