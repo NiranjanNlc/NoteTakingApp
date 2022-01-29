@@ -38,7 +38,6 @@ class AddFragment : Fragment() {
     }
 
     private fun observeValue() {
-        showLoadngDalog()
         viewModal.updateStatus.observe(viewLifecycleOwner,{
             if (it) {
                 println(" upaddt section  ${it.toString()}")
@@ -68,6 +67,7 @@ class AddFragment : Fragment() {
     }
 
     private fun insertData() {
+        showLoadngDalog()
         viewModal.insertData(binding.notes)
     }
 
